@@ -11,6 +11,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
+  {path:'homme',component:HomeComponent},
   {path:'product/:id',component:ProductComponent},
   {path:'product',component:ProductComponent},
   {path:'cart',component:CartComponent},

@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="jumbotron">
     <div class="row">
       <div class="col-md-6 d-flex mx-auto flex-column">
@@ -23,4 +23,90 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="main">
+      <input type="checkbox" id="chk" aria-hidden="true" />
+
+      <div class="signup">
+        <form #userForm="ngForm">
+          <label for="chk" aria-hidden="true">Sign up</label>
+          <input
+            type="text"
+            #username="ngModel"
+            name="txt"
+            [class.is-invalid]="username.invalid && username.touched"
+            placeholder="User name"
+            [(ngModel)]="signupObj.userName"
+            required
+          />
+          
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            [(ngModel)]="signupObj.email"
+            required
+          />
+          <input
+            type="password"
+            name="pswd"
+            placeholder="Password"
+            [(ngModel)]="signupObj.password"
+            required
+          />
+          <button [disabled]="userForm.form.invalid" (click)="signUp()">Sign up</button>
+        </form>
+      </div>
+
+      <div class="login">
+        <form>
+          <label for="chk" aria-hidden="true">Login</label>
+          <input
+            type="email"
+            #email="ngModel"
+            [class.is-invalid]="email.invalid && email.touched"
+            name="email"
+            placeholder="Email"
+            [(ngModel)]="loginObj.email"
+            required
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          />
+          <div *ngIf="(email.invalid && email.touched) || email.dirty">
+            <small class="text-danger" *ngIf="email.errors?.required"
+              >Email address is required</small
+            >
+            <small class="text-danger" *ngIf="email.errors?.pattern"
+              >Email address is invalid</small
+            >
+          </div>
+
+          <input
+            type="password"
+            #password="ngModel"
+            [class.is-invalid]="password.invalid && password.touched"
+            name="password"
+            placeholder="Password"
+            [(ngModel)]="loginObj.password"
+            required
+            minlength="8"
+          />
+          <div *ngIf="(password.invalid && password.touched) || password.dirty">
+            <small class="text-danger" *ngIf="password.errors?.required"
+              >password is required</small
+            >
+            <small class="text-danger" *ngIf="password.errors?.minlength"
+              >password must be 8 character</small
+            >
+          </div>
+          <button  (click)="login($event)">Login</button>
+    
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
